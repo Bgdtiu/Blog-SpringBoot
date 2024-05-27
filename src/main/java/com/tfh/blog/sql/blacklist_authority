@@ -1,0 +1,7 @@
+# 黑名单权限(存储用户的黑名单权限)
+
+create table if not exists blacklist_authority
+(
+    id      int    not null comment '权限id',
+    user_id bigint not null comment '用户id'
+);

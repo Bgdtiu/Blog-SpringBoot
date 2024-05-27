@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tfh.blog.mapper.ArticleMapper">
+
+    <resultMap id="BaseResultMap" type="com.tfh.blog.pojo.Article">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="BIGINT"/>
+            <result property="creationTime" column="creation_time" jdbcType="TIMESTAMP"/>
+            <result property="changeTime" column="change_time" jdbcType="TIMESTAMP"/>
+            <result property="count" column="count" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="title" column="title" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,creation_time,
+        change_time,count,status,
+        title,content
+    </sql>
+    <select id="variableByUserId" resultType="java.lang.Integer">
+        select count(*)
+        from article
+        where user_id = #{userId}
+    </select>
+
+    <select id="getHasNotBeenReviewed" resultType="java.lang.Integer">
+        select count(*) from article where status = 2;
+    </select>
+
+    <select id="auditFailure" resultType="java.lang.Integer">
+        select count(*) from article where status = 3;
+    </select>
+
+    <select id="examinationPassed" resultType="java.lang.Integer">
+        select count(*) from article where status = 1
+    </select>
+</mapper>

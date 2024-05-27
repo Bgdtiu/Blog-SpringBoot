@@ -1,0 +1,11 @@
+# 角色(存储角色信息)
+
+create table if not exists role
+(
+    id          int primary key auto_increment comment '角色id',
+    role_name   varchar(32) not null comment '角色名',
+    description varchar(32) not null comment '角色描述'
+);
+
+INSERT INTO springboot_blog.role (id, role_name, description) VALUES (1, 'administrator', '超级管理员,负责管理用户');
+INSERT INTO springboot_blog.role (id, role_name, description) VALUES (2, 'article', '文章角色，管理文章增删改查');

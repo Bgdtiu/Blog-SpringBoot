@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tfh.blog.mapper.UserRoleMapper">
+    <resultMap id="BaseResultMap" type="com.tfh.blog.pojo.UserRole">
+        <result property="userId" column="user_id" jdbcType="BIGINT"/>
+        <result property="roleId" column="role_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,role_id
+    </sql>
+
+    <insert id="initialRole">
+        insert into user_role value (#{userId}, 2)
+    </insert>
+
+    <insert id="addUserRole" >
+        insert into user_role
+        values
+            <foreach collection="roles" index="index" item="role"  separator=",">
+                (#{userId},#{role.id})
+            </foreach>
+    </insert>
+
+    <delete id="deleteUserAllRole">
+        delete
+        from user_role
+        where user_id = #{userId}
+    </delete>
+</mapper>

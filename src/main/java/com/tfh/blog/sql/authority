@@ -1,0 +1,20 @@
+# 权限(存储角色的权限)
+
+create table if not exists authority
+(
+    id              int primary key auto_increment comment '权限id',
+    role_id         int         not null comment '角色id',
+    permission_name varchar(32) not null comment '权限名',
+    description     varchar(32) not null comment '权限描述'
+);
+
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (1, 1, 'administrator:select', '查看用户');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (2, 1, 'administrator:insert', '增加用户');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (3, 1, 'administrator:update', '修改用户');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (4, 1, 'administrator:delete', '删除用户');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (5, 2, 'article:select', '查看文章');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (6, 2, 'article:insert', '增加文章');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (7, 2, 'article:update', '修改文章');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (8, 2, 'article:delete', '删除文章');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (9, 1, 'administrator:get_user_competence', '获取用户的权限信息');
+INSERT INTO springboot_blog.authority (id, role_id, permission_name, description) VALUES (10, 1, 'administrator:put_user_permissions', '修改用户权限');
