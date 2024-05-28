@@ -1,7 +1,6 @@
 package com.tfh.blog.service.impl;
 
-import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
+
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -18,7 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -170,6 +169,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
         return Result.ok();
     }
 
+
     @Override
     public Result publicArticle(Integer page) {
         ArrayList<Object> objects = new ArrayList<>();
@@ -178,7 +178,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>
                 .orderByDesc(Article::getId)
                 .eq(Article::getStatus, 1)
                 .select(Article::getId, Article::getTitle, Article::getContent);
-        Page<Article> articlePage = articleMapper.selectPage(new Page<Article>(page, 10), eq);
+        Page<Article> articlePage = articleMapper.selectPage(new Page<>(page, 10), eq);
         List<Article> records = articlePage.getRecords();
         long pages = articlePage.getPages();
         objects.add(records);
